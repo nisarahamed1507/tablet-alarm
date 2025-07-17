@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Medication - Tablet Alarm</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="form-page">
+    <header class="app-header">
+        <div class="header-left">
+            <a href="dashboard.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Add Medication</h1>
+        </div>
+        <div class="header-right">
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span id="currentUser"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="form-main">
+        <form id="medicationForm" class="medication-form">
+            <!-- Basic Information -->
+            <div class="form-section">
+                <h2>
+                    <i class="fas fa-info-circle"></i>
+                    Basic Information
+                </h2>
+                
+                <div class="form-group">
+                    <label for="medicineName">Medicine Name</label>
+                    <input type="text" id="medicineName" name="medicineName" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dosageAmount">Dosage Amount</label>
+                        <input type="number" id="dosageAmount" name="dosageAmount" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dosageUnit">Unit</label>
+                        <select id="dosageUnit" name="dosageUnit" required>
+                            <option value="mg">mg</option>
+                            <option value="ml">ml</option>
+                            <option value="tablets">tablets</option>
+                            <option value="capsules">capsules</option>
+                            <option value="drops">drops</option>
+                            <option value="tsp">tsp</option>
+                            <option value="tbsp">tbsp</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schedule Information -->
+            <div class="form-section">
+                <h2>
+                    <i class="fas fa-clock"></i>
+                    Schedule
+                </h2>
+                
+                <div class="form-group">
+                    <label for="frequency">Frequency</label>
+                    <select id="frequency" name="frequency" required>
+                        <option value="1">Once daily</option>
+                        <option value="2">Twice daily</option>
+                        <option value="3">Three times daily</option>
+                        <option value="4">Four times daily</option>
+                        <option value="6">Six times daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="as-needed">As needed</option>
+                    </select>
+                </div>
+                
+                <div id="timesContainer" class="times-container">
+                    <!-- Time inputs will be generated based on frequency -->
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" id="startDate" name="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">End Date</label>
+                        <input type="date" id="endDate" name="endDate" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Instructions -->
+            <div class="form-section">
+                <h2>
+                    <i class="fas fa-clipboard-list"></i>
+                    Instructions
+                </h2>
+                
+                <div class="form-group">
+                    <label for="instructions">Special Instructions</label>
+                    <textarea id="instructions" name="instructions" rows="3" placeholder="e.g., Take with food, Before meals, etc."></textarea>
+                </div>
+            </div>
+
+            <!-- Voice Input -->
+            <div class="form-section">
+                <h2>
+                    <i class="fas fa-microphone"></i>
+                    Voice Input (Optional)
+                </h2>
+                
+                <div class="voice-controls">
+                    <button type="button" class="btn btn-primary" id="voiceBtn">
+                        <i class="fas fa-microphone"></i> Add by Voice
+                    </button>
+                    <p class="voice-status" id="voiceStatus">Click to start voice input</p>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='dashboard.html'">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Medication
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/voice.js"></script>
+    <script src="js/medication.js"></script>
+</body>
+</html>

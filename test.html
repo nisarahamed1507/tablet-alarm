@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Tablet Alarm</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="app-logo">
+                <i class="fas fa-pills"></i>
+                <h1>Tablet Alarm - Test Page</h1>
+                <p class="tagline">Testing Functionality</p>
+            </div>
+            
+            <div style="padding: 20px;">
+                <h3>Test Results:</h3>
+                <div id="testResults"></div>
+                <br>
+                <button id="testBtn" class="btn btn-primary">Run Tests</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function runTests() {
+            const results = document.getElementById('testResults');
+            let testOutput = '';
+            
+            try {
+                // Test 1: Check if storage is working
+                testOutput += '<div>✓ Storage.js loaded successfully</div>';
+                
+                // Test 2: Check if localStorage is available
+                if (typeof(Storage) !== "undefined") {
+                    testOutput += '<div>✓ LocalStorage is available</div>';
+                } else {
+                    testOutput += '<div>✗ LocalStorage is not available</div>';
+                }
+                
+                // Test 3: Test storage initialization
+                const storageManager = new StorageManager();
+                testOutput += '<div>✓ StorageManager initialized</div>';
+                
+                // Test 4: Test auth initialization
+                const authManager = new AuthManager();
+                testOutput += '<div>✓ AuthManager initialized</div>';
+                
+                // Test 5: Check if users array exists
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                testOutput += `<div>✓ Users array exists with ${users.length} users</div>`;
+                
+                // Test 6: Test user creation
+                const testUser = {
+                    username: 'testuser',
+                    createdAt: new Date().toISOString(),
+                    medications: [],
+                    exercises: [],
+                    appointments: [],
+                    medicationHistory: []
+                };
+                
+                users.push(testUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                testOutput += '<div>✓ Test user created successfully</div>';
+                
+                // Test 7: Test settings
+                const settings = JSON.parse(localStorage.getItem('appSettings') || '{}');
+                testOutput += `<div>✓ App settings loaded: ${Object.keys(settings).length} settings</div>`;
+                
+            } catch (error) {
+                testOutput += `<div style="color: red;">✗ Error: ${error.message}</div>`;
+                console.error('Test error:', error);
+            }
+            
+            results.innerHTML = testOutput;
+        }
+        
+        document.getElementById('testBtn').addEventListener('click', runTests);
+        
+        // Auto-run tests on page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+</html>

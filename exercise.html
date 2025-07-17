@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise - Tablet Alarm</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="exercise-page">
+    <header class="app-header">
+        <div class="header-left">
+            <a href="dashboard.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Exercise</h1>
+        </div>
+        <div class="header-right">
+            <button class="btn btn-primary" id="addExerciseBtn">
+                <i class="fas fa-plus"></i> Add Exercise
+            </button>
+        </div>
+    </header>
+
+    <main class="exercise-main">
+        <!-- Exercise Stats -->
+        <div class="exercise-stats">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalExercises">0</h3>
+                    <p>Total Exercises</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="completedToday">0</h3>
+                    <p>Completed Today</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="streakDays">0</h3>
+                    <p>Streak Days</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise List -->
+        <div class="exercise-list" id="exerciseList">
+            <!-- Exercise cards will be populated here -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <i class="fas fa-running"></i>
+            <h3>No Exercises Added</h3>
+            <p>Add your first exercise to get started with your fitness routine!</p>
+            <button class="btn btn-primary" onclick="document.getElementById('addExerciseBtn').click()">
+                <i class="fas fa-plus"></i> Add Exercise
+            </button>
+        </div>
+    </main>
+
+    <!-- Add Exercise Modal -->
+    <div id="exerciseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Exercise</h2>
+                <button class="modal-close" id="closeExerciseModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="exerciseForm">
+                <div class="form-group">
+                    <label for="exerciseName">Exercise Name</label>
+                    <input type="text" id="exerciseName" name="exerciseName" placeholder="e.g., Morning Walk, Yoga, etc." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exerciseDescription">Description</label>
+                    <textarea id="exerciseDescription" name="exerciseDescription" rows="3" placeholder="Describe the exercise routine..."></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="exerciseDuration">Duration (minutes)</label>
+                        <input type="number" id="exerciseDuration" name="exerciseDuration" min="1" placeholder="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="exerciseFrequency">Frequency</label>
+                        <select id="exerciseFrequency" name="exerciseFrequency">
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="alternate">Alternate Days</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exerciseTime">Preferred Time</label>
+                    <input type="time" id="exerciseTime" name="exerciseTime">
+                </div>
+                
+                <!-- Exercise Image -->
+                <div class="form-group">
+                    <label>Exercise Image</label>
+                    <div class="image-upload">
+                        <div class="image-preview" id="exerciseImagePreview">
+                            <i class="fas fa-running"></i>
+                            <p>Upload exercise image</p>
+                        </div>
+                        <input type="file" id="exerciseImage" accept="image/*" style="display: none;">
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('exerciseImage').click()">
+                            <i class="fas fa-upload"></i> Upload Image
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelExercise">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Exercise</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bottom-nav">
+        <a href="dashboard.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="add-medication.html" class="nav-item">
+            <i class="fas fa-plus"></i>
+            <span>Add Medication</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+            <i class="fas fa-calendar"></i>
+            <span>Calendar</span>
+        </a>
+        <a href="exercise.html" class="nav-item active">
+            <i class="fas fa-running"></i>
+            <span>Exercise</span>
+        </a>
+        <a href="ai-chat.html" class="nav-item">
+            <i class="fas fa-robot"></i>
+            <span>AI Assistant</span>
+        </a>
+    </nav>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/exercise.js"></script>
+</body>
+</html>

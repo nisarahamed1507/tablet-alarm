@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablet Alarm - Layout Test</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-main">
+        <div class="container">
+            <h1>Medication Card Layout Test</h1>
+            
+            <div class="section">
+                <h2>Test Cases for Time Display Overflow</h2>
+                <div class="medication-grid">
+                    
+                    <!-- Test Case 1: Normal time -->
+                    <div class="medication-card due-now">
+                        <div class="medication-header">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9IiNmOGY5ZmEiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSIxOCIgeT0iMTgiPgo8cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MiAwLTgtMy41OC04LThzMy41OC04IDgtOCA4IDMuNTggOCA4LTMuNTggOC04IDh6bTMuNS05TDEyIDEwSDloNGwzLTMgMy41IDMuNXoiIGZpbGw9IiM2Yzc1N2QiLz4KPC9zdmc+Cjwvc3ZnPgo=" alt="Aspirin" class="medication-image">
+                            <div class="medication-info">
+                                <h3>Aspirin</h3>
+                                <p>100 mg</p>
+                                <p class="time-display due-time">Due now!</p>
+                            </div>
+                        </div>
+                        <div class="medication-actions">
+                            <button class="btn btn-success btn-take">
+                                <i class="fas fa-check"></i> Mark as Taken
+                            </button>
+                            <button class="btn btn-danger btn-miss">
+                                <i class="fas fa-times"></i> Mark as Missed
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Test Case 2: Long time display -->
+                    <div class="medication-card coming-up">
+                        <div class="medication-header">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9IiNmOGY5ZmEiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSIxOCIgeT0iMTgiPgo8cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MiAwLTgtMy41OC04LThzMy41OC04IDgtOCA4IDMuNTggOCA4LTMuNTggOC04IDh6bTMuNS05TDEyIDEwSDloNGwzLTMgMy41IDMuNXoiIGZpbGw9IiM2Yzc1N2QiLz4KPC9zdmc+Cjwvc3ZnPgo=" alt="Ibuprofen" class="medication-image">
+                            <div class="medication-info">
+                                <h3>Ibuprofen</h3>
+                                <p>200 mg</p>
+                                <p class="time-display next-time">Next: 11:15 PM</p>
+                            </div>
+                        </div>
+                        <div class="medication-actions">
+                            <button class="btn btn-success btn-take">
+                                <i class="fas fa-check"></i> Mark as Taken
+                            </button>
+                            <button class="btn btn-danger btn-miss">
+                                <i class="fas fa-times"></i> Mark as Missed
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Test Case 3: Very long medication name -->
+                    <div class="medication-card coming-up">
+                        <div class="medication-header">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9IiNmOGY5ZmEiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSIxOCIgeT0iMTgiPgo8cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MiAwLTgtMy41OC04LThzMy41OC04IDgtOCA4IDMuNTggOCA4LTMuNTggOC04IDh6bTMuNS05TDEyIDEwSDloNGwzLTMgMy41IDMuNXoiIGZpbGw9IiM2Yzc1N2QiLz4KPC9zdmc+Cjwvc3ZnPgo=" alt="Acetaminophen" class="medication-image">
+                            <div class="medication-info">
+                                <h3>Acetaminophen Extra Strength Long Name</h3>
+                                <p>500 mg tablets</p>
+                                <p class="time-display next-time">Next: 11:15 PM</p>
+                            </div>
+                        </div>
+                        <div class="medication-actions">
+                            <button class="btn btn-success btn-take">
+                                <i class="fas fa-check"></i> Mark as Taken
+                            </button>
+                            <button class="btn btn-danger btn-miss">
+                                <i class="fas fa-times"></i> Mark as Missed
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Test Case 4: Very long time display -->
+                    <div class="medication-card coming-up">
+                        <div class="medication-header">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9IiNmOGY5ZmEiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSIxOCIgeT0iMTgiPgo8cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MiAwLTgtMy41OC04LThzMy41OC04IDgtOCA4IDMuNTggOCA4LTMuNTggOC04IDh6bTMuNS05TDEyIDEwSDloNGwzLTMgMy41IDMuNXoiIGZpbGw9IiM2Yzc1N2QiLz4KPC9zdmc+Cjwvc3ZnPgo=" alt="Vitamin D" class="medication-image">
+                            <div class="medication-info">
+                                <h3>Vitamin D3</h3>
+                                <p>1000 IU</p>
+                                <p class="time-display next-time">Next: Tomorrow at 11:15 PM</p>
+                            </div>
+                        </div>
+                        <div class="medication-actions">
+                            <button class="btn btn-success btn-take">
+                                <i class="fas fa-check"></i> Mark as Taken
+                            </button>
+                            <button class="btn btn-danger btn-miss">
+                                <i class="fas fa-times"></i> Mark as Missed
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Mobile View Test</h2>
+                <p>Resize your browser window to test mobile responsiveness (under 768px width).</p>
+                <div style="background: #f0f0f0; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                    <strong>Test Instructions:</strong>
+                    <ul>
+                        <li>✅ All text should stay within card boundaries</li>
+                        <li>✅ Time display should use ellipsis (...) if too long</li>
+                        <li>✅ Cards should stack vertically on mobile</li>
+                        <li>✅ No horizontal scrolling should occur</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Extreme Edge Cases</h2>
+                <div class="medication-grid">
+                    
+                    <!-- Extreme Case 1: Very narrow screen simulation -->
+                    <div class="medication-card due-now" style="max-width: 250px;">
+                        <div class="medication-header">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9IiNmOGY5ZmEiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSIxOCIgeT0iMTgiPgo8cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MiAwLTgtMy41OC04LThzMy41OC04IDgtOCA4IDMuNTggOCA4LTMuNTggOC04IDh6bTMuNS05TDEyIDEwSDloNGwzLTMgMy41IDMuNXoiIGZpbGw9IiM2Yzc1N2QiLz4KPC9zdmc+Cjwvc3ZnPgo=" alt="Medication" class="medication-image">
+                            <div class="medication-info">
+                                <h3>Super Long Medication Name That Should Be Cut Off</h3>
+                                <p>1000 mg extended release tablets</p>
+                                <p class="time-display next-time">Next: Tomorrow at 11:15 PM (very long time)</p>
+                            </div>
+                        </div>
+                        <div class="medication-actions">
+                            <button class="btn btn-success btn-take">
+                                <i class="fas fa-check"></i> Mark as Taken
+                            </button>
+                            <button class="btn btn-danger btn-miss">
+                                <i class="fas fa-times"></i> Mark as Missed
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

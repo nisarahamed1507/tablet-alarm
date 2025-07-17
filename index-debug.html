@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablet Alarm - Debug Version</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="app-logo">
+                <i class="fas fa-pills"></i>
+                <h1>Tablet Alarm</h1>
+                <p class="tagline">Never Miss Your Medicine (Debug)</p>
+            </div>
+            
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" value="12345" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>New User? <a href="signup.html">Sign Up</a></p>
+                <p style="margin-top: 10px; font-size: 12px; color: #666;">
+                    Debug: Check browser console (F12) for errors
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Debug logging
+        console.log('Page loaded');
+        console.log('Storage available:', typeof(Storage) !== "undefined");
+        console.log('localStorage test:', localStorage.getItem('test'));
+        localStorage.setItem('test', 'working');
+        console.log('localStorage working:', localStorage.getItem('test') === 'working');
+        
+        // Check if scripts loaded
+        console.log('StorageManager available:', typeof StorageManager !== 'undefined');
+        console.log('AuthManager available:', typeof AuthManager !== 'undefined');
+        
+        // Test form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            console.log('Form submitted');
+        });
+        
+        // Wait for everything to load
+        window.addEventListener('load', function() {
+            console.log('Window loaded');
+            
+            // Try to create a test user for easy testing
+            try {
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const testUserExists = users.some(user => user.username === 'test');
+                
+                if (!testUserExists) {
+                    const testUser = {
+                        username: 'test',
+                        password: '12345',
+                        createdAt: new Date().toISOString(),
+                        medications: [],
+                        exercises: [],
+                        appointments: [],
+                        medicationHistory: []
+                    };
+                    users.push(testUser);
+                    localStorage.setItem('users', JSON.stringify(users));
+                    console.log('Test user created. You can login with username: test, password: 12345');
+                }
+            } catch (error) {
+                console.error('Error creating test user:', error);
+            }
+        });
+    </script>
+</body>
+</html>

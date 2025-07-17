@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Test - Tablet Alarm</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-main">
+        <div class="container">
+            <h1>Form Submission Test</h1>
+            
+            <div class="section">
+                <h2>Test Results</h2>
+                <div id="testResults" style="margin: 20px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background: #f9f9f9;">
+                    <p><strong>Test Status:</strong> Ready to test</p>
+                    <p><strong>Instructions:</strong></p>
+                    <ul>
+                        <li>1. Open developer console (F12)</li>
+                        <li>2. Try submitting the exercise form</li>
+                        <li>3. Try submitting the appointment form</li>
+                        <li>4. Check console for debug messages</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Quick Exercise Test</h2>
+                <button class="btn btn-primary" onclick="testExerciseForm()">Test Exercise Form</button>
+                <button class="btn btn-primary" onclick="testAppointmentForm()">Test Appointment Form</button>
+            </div>
+
+            <div class="section">
+                <h2>Manual Test Links</h2>
+                <p>
+                    <a href="exercise.html" class="btn btn-secondary">Go to Exercise Page</a>
+                    <a href="calendar.html" class="btn btn-secondary">Go to Calendar Page</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/notifications.js"></script>
+    
+    <script>
+        // Initialize auth for testing
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-login a test user if none exists
+            if (!localStorage.getItem('currentUser')) {
+                localStorage.setItem('currentUser', 'testuser');
+                localStorage.setItem('users', JSON.stringify([{
+                    username: 'testuser',
+                    password: 'test123',
+                    email: 'test@example.com'
+                }]));
+            }
+        });
+
+        function testExerciseForm() {
+            console.log('Testing exercise form submission...');
+            
+            // Test data
+            const testData = {
+                exerciseName: 'Test Exercise',
+                exerciseDescription: 'This is a test exercise',
+                exerciseDuration: '30',
+                exerciseFrequency: 'daily',
+                exerciseTime: '09:00'
+            };
+
+            console.log('Test exercise data:', testData);
+
+            // Test validation
+            if (!testData.exerciseName) {
+                console.error('Exercise name validation should fail');
+                return;
+            }
+
+            if (testData.exerciseDuration && parseInt(testData.exerciseDuration) <= 0) {
+                console.error('Duration validation should fail');
+                return;
+            }
+
+            console.log('✅ Exercise form validation passed');
+            
+            // Test storage
+            const exerciseData = {
+                id: Date.now().toString(),
+                ...testData,
+                exerciseDuration: parseInt(testData.exerciseDuration),
+                createdAt: new Date().toISOString(),
+                lastCompleted: null
+            };
+
+            try {
+                if (window.StorageManager) {
+                    const success = window.StorageManager.addExercise(exerciseData);
+                    console.log('✅ Exercise storage test:', success ? 'PASSED' : 'FAILED');
+                } else {
+                    console.error('❌ StorageManager not available');
+                }
+            } catch (error) {
+                console.error('❌ Exercise storage test failed:', error);
+            }
+
+            updateTestResults('Exercise form test completed - check console for results');
+        }
+
+        function testAppointmentForm() {
+            console.log('Testing appointment form submission...');
+            
+            // Test data
+            const testData = {
+                appointmentDate: '2025-07-10',
+                appointmentTime: '14:30',
+                doctorName: 'Dr. Test',
+                appointmentType: 'checkup',
+                appointmentNotes: 'Test appointment'
+            };
+
+            console.log('Test appointment data:', testData);
+
+            // Test validation
+            if (!testData.appointmentDate || testData.appointmentDate.toString().trim() === '') {
+                console.error('❌ Date validation should fail');
+                return;
+            }
+
+            if (!testData.appointmentTime || testData.appointmentTime.toString().trim() === '') {
+                console.error('❌ Time validation should fail');
+                return;
+            }
+
+            if (!testData.doctorName || testData.doctorName.toString().trim() === '') {
+                console.error('❌ Doctor name validation should fail');
+                return;
+            }
+
+            if (!testData.appointmentType || testData.appointmentType.toString().trim() === '') {
+                console.error('❌ Appointment type validation should fail');
+                return;
+            }
+
+            // Check if appointment is in the past
+            const appointmentDateTime = new Date(`${testData.appointmentDate}T${testData.appointmentTime}`);
+            const now = new Date();
+            
+            if (appointmentDateTime < new Date(now.getTime() - 60000)) {
+                console.error('❌ Past appointment validation should fail');
+                return;
+            }
+
+            console.log('✅ Appointment form validation passed');
+            
+            // Test storage
+            const appointmentData = {
+                id: Date.now().toString(),
+                ...testData,
+                createdAt: new Date().toISOString()
+            };
+
+            try {
+                if (window.StorageManager) {
+                    const success = window.StorageManager.addAppointment(appointmentData);
+                    console.log('✅ Appointment storage test:', success ? 'PASSED' : 'FAILED');
+                } else {
+                    console.error('❌ StorageManager not available');
+                }
+            } catch (error) {
+                console.error('❌ Appointment storage test failed:', error);
+            }
+
+            updateTestResults('Appointment form test completed - check console for results');
+        }
+
+        function updateTestResults(message) {
+            const resultsDiv = document.getElementById('testResults');
+            if (resultsDiv) {
+                resultsDiv.innerHTML = `
+                    <p><strong>Test Status:</strong> ${message}</p>
+                    <p><strong>Time:</strong> ${new Date().toLocaleTimeString()}</p>
+                    <p><strong>Note:</strong> Check the browser console (F12) for detailed test results</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

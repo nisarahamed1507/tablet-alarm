@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant - Tablet Alarm</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="ai-chat-page">
+    <header class="app-header">
+        <div class="header-left">
+            <a href="dashboard.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>AI Assistant</h1>
+        </div>
+        <div class="header-right">
+            <button class="btn btn-secondary" id="clearChatBtn">
+                <i class="fas fa-trash"></i> Clear Chat
+            </button>
+        </div>
+    </header>
+
+    <main class="chat-main">
+        <!-- AI Status -->
+        <div class="ai-status">
+            <div class="ai-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="ai-info">
+                <h3>Medical Assistant</h3>
+                <p class="ai-status-text">Ready to help with medication information</p>
+            </div>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-message ai-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>Hello! I'm your AI medical assistant. I can help you with:</p>
+                    <ul>
+                        <li>Medication effects and side effects</li>
+                        <li>Drug interactions</li>
+                        <li>General health information</li>
+                        <li>Medication reminders and schedules</li>
+                    </ul>
+                    <p>How can I assist you today?</p>
+                </div>
+                <div class="message-time">Just now</div>
+            </div>
+        </div>
+
+        <!-- Quick Suggestions -->
+        <div class="quick-suggestions" id="quickSuggestions">
+            <h4>Quick Questions:</h4>
+            <div class="suggestion-buttons">
+                <button class="suggestion-btn" data-question="What are the side effects of Paracetamol?">
+                    Side effects of Paracetamol
+                </button>
+                <button class="suggestion-btn" data-question="Can I take Aspirin with blood pressure medication?">
+                    Drug interactions
+                </button>
+                <button class="suggestion-btn" data-question="What should I do if I miss a dose?">
+                    Missed dose advice
+                </button>
+                <button class="suggestion-btn" data-question="How to set up medication reminders?">
+                    Reminder setup
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chat Input -->
+    <div class="chat-input-container">
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Ask about medication effects, interactions, etc...">
+            <button class="btn btn-primary" id="sendBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+            <button class="btn btn-secondary" id="voiceChatBtn">
+                <i class="fas fa-microphone"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Voice Recording Modal -->
+    <div id="voiceModal" class="modal">
+        <div class="modal-content voice-modal">
+            <div class="voice-animation">
+                <div class="voice-circle"></div>
+                <div class="voice-wave"></div>
+            </div>
+            <h3>Listening...</h3>
+            <p>Speak your question about medications</p>
+            <button class="btn btn-danger" id="stopVoiceBtn">
+                <i class="fas fa-stop"></i> Stop Recording
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bottom-nav">
+        <a href="dashboard.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="add-medication.html" class="nav-item">
+            <i class="fas fa-plus"></i>
+            <span>Add Medication</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+            <i class="fas fa-calendar"></i>
+            <span>Calendar</span>
+        </a>
+        <a href="exercise.html" class="nav-item">
+            <i class="fas fa-running"></i>
+            <span>Exercise</span>
+        </a>
+        <a href="ai-chat.html" class="nav-item active">
+            <i class="fas fa-robot"></i>
+            <span>AI Assistant</span>
+        </a>
+    </nav>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/voice.js"></script>
+    <script src="js/ai-chat.js"></script>
+</body>
+</html>
